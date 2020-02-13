@@ -1,0 +1,122 @@
+@bgcolor: cyan;
+@color-png: cyan;
+@color-jpg: yellow;
+@color-gif: lightgreen;
+body {
+  width: 100vw;
+  height: 100vh;
+  perspective: 100vw;
+  overflow: hidden;
+  background: linear-gradient(orange, red);
+  display: grid;
+  margin: 0;
+  text-align: center;
+  font-family: sans-serif;
+  grid-gap: 5%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  &:before {
+    content: '';
+    background: url('../img/paint.jpg') center center / 100% 100% no-repeat;
+    transform-origin: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 250vw;
+    opacity: 1;
+    will-change: filter, transform;
+    filter: blur(40px) saturate(500%) hue-rotate(235deg);
+    animation: hue 15s linear infinite;
+    pointer-events: none;
+    opacity: 0.8;
+    mix-blend-mode: overlay;
+    height: 250vh;
+    margin: auto;
+  }
+}
+@keyframes hue {
+  0% {
+    filter: blur(40px) saturate(500%) hue-rotate(0deg);
+    transform: rotate(0deg) translateZ(0deg);
+  }
+  25% {
+    filter: blur(40px) saturate(500%) hue-rotate(360deg);
+  }
+  50% {
+    filter: blur(40px) saturate(500%) hue-rotate(0deg);
+  }
+  75% {
+    filter: blur(40px) saturate(500%) hue-rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg) translateZ(0deg);
+  }
+}
+body > * {
+  transition: transform .1s ease;
+  filter: blur(3px);
+  &:hover {
+    filter: blur(0px);
+    transition: transform .2s ease;
+    transform: scale(1.1);
+    cursor: crosshair;
+  }
+}
+img {
+  content:'';
+  max-width: 100%;
+  grid-row-start: 3;
+  display: inline-block;
+  image-rendering: pixelated;
+  &:active {
+    transform: scale(2) rotate(-5deg);
+    border-top: transparent !important;
+    z-index: 2;
+  }
+  &[src*="png"] {
+    border-top: 0.2rem solid @color-png;
+  }
+  &[src*="jpg"] {
+    border-top: 0.2rem solid @color-jpg;
+  }
+  &[src*="gif"] {
+    border-top: 0.2rem solid @color-gif;
+  }
+}
+
+h1 {
+  width: 100%;
+  color: white;
+  grid-row-start: 2;
+  grid-column: 1 / span 3;
+  & ~ * {
+    transition: .2s ease;
+  }
+  &:hover ~ * {
+    filter: blur(0px);
+    transform: scale(0.9);
+    transition: .2s ease;
+  }
+}
+h2 {
+  &[data-src="png"] {
+    color:@color-png;
+    &:hover~img[src*="png"] {
+      filter: blur(0);
+    }
+  }
+  &[data-src="jpg"] {
+    color:@color-jpg;
+    &:hover~img[src*="jpg"] {
+      filter: blur(0);
+    }
+  }
+  &[data-src="gif"] {
+    color: @color-gif;
+    &:hover~img[src*="gif"] {
+      filter: blur(0);
+    }
+  }
+}

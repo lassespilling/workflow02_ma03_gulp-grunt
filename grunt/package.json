@@ -1,0 +1,23 @@
+{
+  "name": "project-name",
+  "version": "1.0.0",
+  "description": "Test grunt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lasse D. Spilling",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-autoprefixer": "*",
+    "grunt-browser-sync": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-htmlmin": "*",
+    "grunt-contrib-imagemin": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-watch": "*"
+  },
+  "dependencies": {}
+}
